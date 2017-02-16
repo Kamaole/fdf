@@ -3,7 +3,7 @@ NAME = fdf
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = gnl/get_next_line.c src/apply_center.c src/apply_scale.c src/draw.c src/get_point.c src/main.c src/make_grid.c src/make_mlx.c src/relative_center.c src/rot.c src/usage.c src/handle_key.c src/make_line.c src/xy_keys.c src/z_keys.c
+SRC = gnl/get_next_line.c src/*.c
 
 FRAMEWORKS = -framework OpenGL -framework Appkit
 
@@ -22,10 +22,10 @@ GNL = -I gnl
 all: $(NAME)
 
 libft.a:
-	make -C libft re
+	make -C libft
 
 mlx.a:
-	make -C mlx re
+	make -C mlx
 
 $(NAME): libft.a mlx.a
 	$(CC) $(MLX) $(LIBFT) $(GNL) $(INCLUDE) $(FRAMEWORKS) $(SRC) -o $(NAME)

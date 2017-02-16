@@ -30,7 +30,7 @@ int		read_tmp(const int fd, char **buff)
 	return (bytes_read);
 }
 
-int		make_line(char **buff, char **line)
+int		get_line(char **buff, char **line)
 {
 	char *str;
 
@@ -57,7 +57,7 @@ int		get_next_line(const int fd, char **line)
 	bytes_read = read_tmp(fd, &buff);
 	if (bytes_read == -1)
 		return (-1);
-	if (make_line(&buff, line))
+	if (get_line(&buff, line))
 		return (1);
 	*line = ft_strdup(buff);
 	buff = NULL;
