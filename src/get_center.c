@@ -68,3 +68,8 @@ float	mean_z(t_grid grid)
 	}
 	return (sum / (float)i);
 }
+
+t_point		get_center(t_grid grid)
+{
+	return (make_point(mean_x(grid), mean_y(grid), mean_z(grid)));
+}

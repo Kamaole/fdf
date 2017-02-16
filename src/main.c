@@ -17,7 +17,17 @@ int		main(int argc, char **argv)
 {
 	t_env *env = make_env(argv[1]);
 	pixel_to_img(env->img_data, 10, 10, RGB_PURP);
-	put_line(env, make_line(0, 0, 30, 30));
+	scale_xy(env->grid, 10);
+	scale_z(env->grid, 10);
+	int x = 0;
+	int y = 0;
+	printf("main1\n");
+	rotate_x(env->grid, 1);
+	printf("main2\n");
+	rotate_y(env->grid, 1);
+	printf("main3\n");
+	draw_points(env);
+	printf("main4\n");
 	mlx_put_image_to_window(env->mlx, env->win, env->img_data.img, 0, 0);
 	mlx_loop(env->mlx);
 	return (1);
