@@ -12,41 +12,43 @@
 
 #include "fdf.h"
 
-t_grid	*make_grid(int fd)
+t_grid	make_grid(int fd)
 {
 	char	*line;
 	char	*buff;
-	t_grid	*grid;
+	t_grid	grid;
 	int		xlen;
 	int		ylen;
 
 	xlen = 0;
 	ylen = 0;
 	buff = "";
-	grid = (t_grid *)ft_memalloc(sizeof(t_grid));
 	while (get_next_line(fd, &line))
 	{
 		if (!xlen)
 			xlen = get_count(line, ' ');
 		if (get_count(line, ' ') != xlen)
-			return (NULL);
+			exit(0);
 		buff = ft_strjoin(ft_strjoin(buff, " "), line);
 		ylen++;
 	}
-	set_points(grid, ft_strsplit(buff, ' '), xlen, ylen);
+	set_points(&grid, buff, xlen, ylen);
+	ft_strdel(&buff);
 	return (grid);
 }
 
-void	set_points(t_grid *grid, char **split, int xlen, int ylen)
+void	set_points(t_grid *grid, char *buff, int xlen, int ylen)
 {
 	int i;
 	int x;
 	int y;
+	char **split;
 
 	i = 0;
 	y = 0;
 	grid->xlen = xlen;
 	grid->ylen = ylen;
+	split = ft_strsplit(buff, ' ');
 	grid->points = (t_point **)ft_memalloc(sizeof(t_point *) * ylen);
 	while (y < ylen)
 	{
@@ -56,6 +58,7 @@ void	set_points(t_grid *grid, char **split, int xlen, int ylen)
 			grid->points[y][x] = make_point(x, y, ft_atoi(split[i++]));
 		y++;
 	}
+	ft_memdel((void **)split);
 }
 
 t_point	make_point(float x, float y, float z)

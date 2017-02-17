@@ -9,8 +9,8 @@ void 	rotate_x(t_grid grid, float radians)
 
 	y = 0;
 	center = get_center(grid);
-	if (radians == 0.)
-		return ;
+	// if (radians == 0.)
+	// 	return ;
 	while (y < grid.ylen)
 	{
 		x = 0;
@@ -37,8 +37,8 @@ void 	rotate_y(t_grid grid, float radians)
 
 	y = 0;
 	center = get_center(grid);
-	if (radians == 0.)
-		return ;
+	// if (radians == 0.)
+	// 	return ;
 	while (y < grid.ylen)
 	{
 		x = 0;
@@ -65,8 +65,8 @@ void 	rotate_z(t_grid grid, float radians)
 
 	y = 0;
 	center = get_center(grid);
-	if (radians == 0.)
-		return ;
+	// if (radians == 0.)
+	// 	return ;
 	while (y < grid.ylen)
 	{
 		x = 0;

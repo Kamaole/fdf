@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-void 	scale_xy(t_grid grid, int scale)
+void 	scale_xy(t_grid grid, float scale)
 {
 	int x;
 	int y;
@@ -19,7 +19,7 @@ void 	scale_xy(t_grid grid, int scale)
 	}
 }
 
-void 	scale_z(t_grid grid, int scale)
+void 	scale_z(t_grid grid, float scale)
 {
 	int x;
 	int y;

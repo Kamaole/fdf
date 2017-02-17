@@ -31,6 +31,18 @@ typedef struct	s_point
 
 }				t_point;
 
+typedef struct	s_keys
+{
+	int			w;
+	int			a;
+	int			s;
+	int			d;
+	int			q;
+	int			e;
+	int			plus;
+	int			minus;
+}				t_keys;
+
 typedef struct	s_line
 {
 	int			x0;
@@ -63,6 +75,7 @@ typedef struct	s_env
 {
 	t_grid		grid;
 	t_img		img_data;
+	t_keys		keys;
 	void 		*mlx;
 	void 		*win;
 	int			w;
@@ -90,8 +103,8 @@ typedef struct	s_linevars
 	int			err_tmp;
 }				t_linevars;
 
-t_grid		*make_grid(int fd);
-void		set_points(t_grid *grid, char **split, int xlen, int ylen);
+t_grid		make_grid(int fd);
+void		set_points(t_grid *grid, char *buff, int xlen, int ylen);
 t_point		make_point(float x, float y, float z);
 void		pixel_to_img(t_img img_data, int x, int y, int color);
 void		put_line(t_env *env, t_line line);
@@ -102,8 +115,8 @@ t_img		make_img(void *mlx, int x, int y);
 float		mean_x(t_grid grid);
 float		mean_y(t_grid grid);
 float		mean_z(t_grid grid);
-void 		scale_xy(t_grid grid, int scale);
-void 		scale_z(t_grid grid, int scale);
+void 		scale_xy(t_grid grid, float scale);
+void 		scale_z(t_grid grid, float scale);
 t_point		get_center(t_grid grid);
 t_line 		line_from_points(t_point p1, t_point p2, int x_off, int y_off);
 void 		draw_points(t_env *env);
@@ -112,6 +125,8 @@ void 		rotate_y(t_grid grid, float radians);
 void 		rotate_z(t_grid grid, float radians);
 int			get_xoff(t_env *env);
 int			get_yoff(t_env *env);
-int 		handle_keys(int keycode, t_env *env);
+int 		key_press(int keycode, t_env *env);
+int 		key_release(int keycode, t_env *env);
+int			handle_mouse(int button, int x, int y, t_env *env);
 
 #endif
