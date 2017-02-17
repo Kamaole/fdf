@@ -15,19 +15,14 @@
 
 int		main(int argc, char **argv)
 {
-	t_env *env = make_env(argv[1]);
+	t_env *env;
+
+	env = make_env(argv[1], 1000, 1000);
 	pixel_to_img(env->img_data, 10, 10, RGB_PURP);
-	scale_xy(env->grid, 10);
-	scale_z(env->grid, 10);
-	int x = 0;
-	int y = 0;
-	printf("main1\n");
-	rotate_x(env->grid, 1);
-	printf("main2\n");
-	rotate_y(env->grid, 1);
-	printf("main3\n");
+	scale_xy(env->grid, 5);
+	scale_z(env->grid, 1);
 	draw_points(env);
-	printf("main4\n");
+	mlx_hook(env->win, 2, 0, handle_keys, env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img_data.img, 0, 0);
 	mlx_loop(env->mlx);
 	return (1);

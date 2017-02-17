@@ -65,6 +65,10 @@ typedef struct	s_env
 	t_img		img_data;
 	void 		*mlx;
 	void 		*win;
+	int			w;
+	int			h;
+	int			half_w;
+	int			half_h;
 }				t_env;
 
 typedef	struct	s_rot
@@ -93,7 +97,7 @@ void		pixel_to_img(t_img img_data, int x, int y, int color);
 void		put_line(t_env *env, t_line line);
 t_line		make_line(int x0, int y0, int x1, int y1);
 t_img		make_img(void *mlx, int x, int y);
-t_env		*make_env(char *filename);
+t_env		*make_env(char *filename, int w, int h);
 t_img		make_img(void *mlx, int x, int y);
 float		mean_x(t_grid grid);
 float		mean_y(t_grid grid);
@@ -101,9 +105,13 @@ float		mean_z(t_grid grid);
 void 		scale_xy(t_grid grid, int scale);
 void 		scale_z(t_grid grid, int scale);
 t_point		get_center(t_grid grid);
-t_line 		line_from_points(t_point p1, t_point p2);
+t_line 		line_from_points(t_point p1, t_point p2, int x_off, int y_off);
 void 		draw_points(t_env *env);
 void 		rotate_x(t_grid grid, float radians);
 void 		rotate_y(t_grid grid, float radians);
+void 		rotate_z(t_grid grid, float radians);
+int			get_xoff(t_env *env);
+int			get_yoff(t_env *env);
+int 		handle_keys(int keycode, t_env *env);
 
 #endif

@@ -26,16 +26,14 @@ t_grid	*make_grid(int fd)
 	grid = (t_grid *)ft_memalloc(sizeof(t_grid));
 	while (get_next_line(fd, &line))
 	{
-		if (xlen == 0)
+		if (!xlen)
 			xlen = get_count(line, ' ');
 		if (get_count(line, ' ') != xlen)
 			return (NULL);
 		buff = ft_strjoin(ft_strjoin(buff, " "), line);
 		ylen++;
 	}
-	printf("make_grid1\n");
 	set_points(grid, ft_strsplit(buff, ' '), xlen, ylen);
-	printf("make_grid2\n");
 	return (grid);
 }
 
@@ -50,17 +48,12 @@ void	set_points(t_grid *grid, char **split, int xlen, int ylen)
 	grid->xlen = xlen;
 	grid->ylen = ylen;
 	grid->points = (t_point **)ft_memalloc(sizeof(t_point *) * ylen);
-	printf("xlen:%i\n", xlen);
-	printf("ylen:%i\n", ylen);
 	while (y < ylen)
 	{
 		x = -1;
 		grid->points[y] = (t_point *)ft_memalloc(sizeof(t_point) * xlen);
 		while (++x < xlen)
-		{
 			grid->points[y][x] = make_point(x, y, ft_atoi(split[i++]));
-			printf("%f:%f:%f\n", grid->points[y][x].x, grid->points[y][x].y, grid->points[y][x].z);
-		}
 		y++;
 	}
 }
