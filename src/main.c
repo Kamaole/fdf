@@ -27,7 +27,6 @@ int		main(int argc, char **argv)
 	t_env *env;
 
 	env = make_env(argv[1], 1000, 1000);
-	pixel_to_img(env->img_data, 10, 10, RGB_PURP);
 	scale_xy(env->grid, 10);
 	scale_z(env->grid, ft_atoi(argv[2]));
 	draw_points(env);

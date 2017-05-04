@@ -23,12 +23,19 @@
 # define RGB_BLACK 0x000000
 # define ROT_SPEED .05
 
+typedef struct	s_color
+{
+	int			r;
+	int			g;
+	int			b;
+}				t_color;
+
 typedef struct	s_point
 {
 	float		x;
 	float		y;
 	float		z;
-
+	t_color		color;
 }				t_point;
 
 typedef struct	s_keys
@@ -49,6 +56,9 @@ typedef struct	s_line
 	int			y0;
 	int			x1;
 	int			y1;
+	t_color		c0;
+	t_color		c1;
+
 }				t_line;
 
 typedef struct	s_grid
@@ -106,7 +116,7 @@ typedef struct	s_linevars
 t_grid		make_grid(int fd);
 void		set_points(t_grid *grid, char *buff, int xlen, int ylen);
 t_point		make_point(float x, float y, float z);
-void		pixel_to_img(t_img img_data, int x, int y, int color);
+void		pixel_to_img(t_img img_data, int x, int y, t_color color);
 void		put_line(t_env *env, t_line line);
 t_line		make_line(int x0, int y0, int x1, int y1);
 t_img		make_img(void *mlx, int x, int y);
@@ -128,5 +138,6 @@ int			get_yoff(t_env *env);
 int 		key_press(int keycode, t_env *env);
 int 		key_release(int keycode, t_env *env);
 int			handle_mouse(int button, int x, int y, t_env *env);
+int			get_color(int i);
 
 #endif

@@ -24,6 +24,8 @@ t_line 	line_from_points(t_point p1, t_point p2, int x_off, int y_off)
 	line.y0 = p1.y + y_off;
 	line.x1 = p2.x + x_off;
 	line.y1 = p2.y + y_off;
+	line.c0 = p1.color;
+	line.c1 = p2.color;
 	return (line);
 }
 

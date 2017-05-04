@@ -64,9 +64,14 @@ void	set_points(t_grid *grid, char *buff, int xlen, int ylen)
 t_point	make_point(float x, float y, float z)
 {
 	t_point point;
+	int		color;
 
+	color = get_color(z);
 	point.x = x;
 	point.y = y;
 	point.z = z;
+	point.color.r = color & 0xFF;
+	point.color.g = (color >> 8) & 0xFF;
+	point.color.b = (color >> 16) & 0xFF;
 	return (point);
 }
